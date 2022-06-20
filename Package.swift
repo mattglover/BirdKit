@@ -20,7 +20,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "BirdKit",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                .copy("Resources/AvianSpeciesData.json")
+            ]
+        ),
         .testTarget(
             name: "BirdKitTests",
             dependencies: ["BirdKit"]),
