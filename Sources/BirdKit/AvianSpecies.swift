@@ -14,3 +14,19 @@ public struct AvianSpecies: Decodable {
         self.commonName = commonName
     }
 }
+
+extension AvianSpecies: Comparable, Hashable {
+    
+    public static func < (lhs: AvianSpecies, rhs: AvianSpecies) -> Bool {
+        lhs.commonName < rhs.commonName
+    }
+    
+    public static func == (lhs: AvianSpecies, rhs: AvianSpecies) -> Bool {
+        return lhs.bandCode4 < rhs.bandCode4 && lhs.bandCode6 < rhs.bandCode6
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(bandCode4)
+        hasher.combine(bandCode6)
+    }
+}
